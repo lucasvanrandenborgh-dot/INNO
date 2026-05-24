@@ -1,11 +1,70 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = await getCollection('blog');
+const latestPosts = posts.slice(0, 5);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="INNO">
+  <section class="latest">
+    <h2 class="section-title">The Latest</h2>
+    {latestPosts.map((post) => (
+      <article class="post-item">
+        <a href={`/blog/${post.id}`}>
+          <h3 class="post-title">{post.data.title}</h3>
+          <p class="post-description">{post.data.description}</p>
+        </a>
+        <span class="post-date">{post.data.pubDate.toDateString()}</span>
+      </article>
+    ))}
+  </section>
 </Layout>
+
+<style>
+  .section-title {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .post-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .post-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-title {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .post-item a:hover .post-title {
+    text-decoration: underline;
+  }
+
+  .post-description {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .post-date {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+
