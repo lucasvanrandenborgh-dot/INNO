@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const albums = [
+  {
+    title: "Soul Mining",
+    artist: "THE THE",
+    year: 1983,
+    cover: "https://m.media-amazon.com/images/I/71nqjdNI3NL._UF894,1000_QL80_.jpg",
+    text: "A soulful post-punk album that channels existential restlessness and raw emotion through eclectic, layered arrangements and Matt Johnson's searingly honest songwriting."
+  },
+  { 
+    title: "Solitude on Guitar",
+    artist: "Baden Powell de Aquinho",
+    year: 1973,
+    cover: "https://m.media-amazon.com/images/I/812ePp3mv0L._UF1000,1000_QL80_.jpg",
+    text: "A masterful solo acoustic album that showcases his technique and deep soulfulness, combining Brazilian samba, bossa nova, and classical influences into a moving listening experience."
+  },
+  {
+    title: "Nebraska",
+    artist: "Bruce Springsteen",
+    year: 1982,
+    cover: "https://m.media-amazon.com/images/I/71fGFktZFTL.jpg",
+    text: "Nebraska is a stark and haunting acoustic record that strips away all rock grandeur to expose the quiet desperation, moral ambiguity, and fractured dreams of working-class American life."
+  },
+  {
+    title: "Async",
+    artist: "Ryuichi Sakamoto",
+    year: 2017,
+    cover: "https://m.media-amazon.com/images/I/71a7xsY-sCL._UF894,1000_QL80_.jpg",
+    text: "A beautiful ambient album that weaves together fragmented soundscapes, silence, and dissonance to create a deeply meditative reflection on time, nature, and mortality."
+  },
+  {
+    title: "A Hundred Days Off",
+    artist: "Underworld",
+    year: 2002,
+    cover: "https://images.thalia.media/07/-/029edaefb20141f29166ee33b4734e72/a-hundred-days-off-reissue-cd-underworld.jpeg",
+    text: "A hypnotic electronic album that blends pulsating techno rhythms with dreamy, introspective textures, capturing a sense of quiet euphoria and restless energy."
+  },
+];
+---
+
+<Layout title="My All-Time Classic Bops">
+  <section class="bops">
+    <h2 class="section-title">My All-Time Classic Bops</h2>
+    {albums.map((album) => (
+      <article class="album">
+        <img src={album.cover} alt={`${album.title} cover`} class="album-cover" />
+        <div class="album-info">
+          <h3 class="album-title">{album.title}</h3>
+          <p class="album-meta">{album.artist} · {album.year}</p>
+          <p class="album-text">{album.text}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+</Layout>
+
+<style>
+  .section-title {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .album {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .album-cover {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .album-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .album-title {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .album-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .album-text {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+  }
+</style>

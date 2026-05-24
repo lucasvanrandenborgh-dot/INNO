@@ -1,70 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-
+ 
 const posts = await getCollection('blog');
-const latestPosts = posts.slice(0, 5);
+const featured = posts.slice(0, 2);
+const latest = posts.slice(0, 8);
 ---
-
-<Layout title="INNO">
-  <section class="latest">
-    <h2 class="section-title">The Latest</h2>
-    {latestPosts.map((post) => (
-      <article class="post-item">
-        <a href={`/blog/${post.id}`}>
-          <h3 class="post-title">{post.data.title}</h3>
-          <p class="post-description">{post.data.description}</p>
+ 
+<Layout title="That's a Bop!">
+ 
+  <section>
+    <h2 class="section-heading">What's New</h2>
+    <div class="featured-grid">
+      {featured.map((post) => (
+        <a href={`/blog/${post.id}`} class="featured-card">
+          <div class="featured-card-image">
+            <span>{post.data.title}</span>
+          </div>
+          <h3>{post.data.title}</h3>
         </a>
-        <span class="post-date">{post.data.pubDate.toDateString()}</span>
-      </article>
-    ))}
+      ))}
+    </div>
   </section>
+ 
+  <section>
+    <h2 class="section-heading">The Latest</h2>
+    <div class="latest-grid">
+      {latest.map((post) => (
+        <a href={`/blog/${post.id}`} class="latest-card">
+          <h3>{post.data.title}</h3>
+          <p class="latest-meta">{post.data.description}</p>
+          <p class="latest-excerpt">{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+ 
 </Layout>
-
-<style>
-  .section-title {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #888;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-  }
-
-  .post-item {
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-  }
-
-  .post-item a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .post-title {
-    font-size: 1.4rem;
-    margin-bottom: 6px;
-  }
-
-  .post-item a:hover .post-title {
-    text-decoration: underline;
-  }
-
-  .post-description {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 8px;
-  }
-
-  .post-date {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #aaa;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-</style>
-
