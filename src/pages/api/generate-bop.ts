@@ -4,7 +4,7 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   const { answers } = await request.json();
-  const apiKey = import.meta.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
 
   const prompt = `Based on these quiz answers, recommend a real album that fits this person's vibe. Be creative — pick something genuine but potentially unexpected.
 
