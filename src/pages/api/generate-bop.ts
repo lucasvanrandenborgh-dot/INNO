@@ -45,8 +45,12 @@ Respond ONLY with a JSON object, no extra text:
   // Temporary: log the full response to help debug
   console.log('Gemini response:', JSON.stringify(data));
 
-  if (!data.candidates || !data.candidates[0]) {
-    return new Response(JSON.stringify({ error: 'Gemini error', details: data }), {
+ if (!data.candidates || !data.candidates[0]) {
+    return new Response(JSON.stringify({ 
+      error: 'Gemini error', 
+      details: data,
+      debug: { keyLength: apiKey?.length, keyStart: apiKey?.substring(0, 6) }
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
