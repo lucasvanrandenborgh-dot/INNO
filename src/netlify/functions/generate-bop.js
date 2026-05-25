@@ -1,11 +1,6 @@
-import type { APIRoute } from 'astro';
-
-export const prerender = false;
-
-export const POST: APIRoute = async ({ request }) => {
+export default async (request) => {
   const { answers } = await request.json();
   const apiKey = process.env.GEMINI_API_KEY;
-  console.log('Key length:', apiKey?.length, 'starts with:', apiKey?.substring(0, 4));
 
   const prompt = `Based on these quiz answers, recommend a real album that fits this person's vibe. Be creative — pick something genuine but potentially unexpected.
 
@@ -41,16 +36,9 @@ Respond ONLY with a JSON object, no extra text:
   );
 
   const data = await response.json();
-  
-  // Temporary: log the full response to help debug
-  console.log('Gemini response:', JSON.stringify(data));
 
- if (!data.candidates || !data.candidates[0]) {
-    return new Response(JSON.stringify({ 
-      error: 'Gemini error', 
-      details: data,
-      debug: { keyLength: apiKey?.length, keyStart: apiKey?.substring(0, 6) }
-    }), {
+  if (!data.candidates || !data.candidates[0]) {
+    return new Response(JSON.stringify({ error: 'Gemini error', details: data }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -64,4 +52,8 @@ Respond ONLY with a JSON object, no extra text:
     status: 200,
     headers: { 'Content-Type': 'application/json' },
   });
+};
+
+export const config = {
+  path: '/api/generate-bop',
 };
