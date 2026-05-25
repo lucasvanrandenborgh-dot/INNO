@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+ 
+const posts = await getCollection('blog');
+const featured = posts.slice(0, 2);
+const latest = posts.slice(0, 8);
+---
+ 
+<Layout title="That's a Bop!">
+ 
+  <section>
+    <h2 class="section-heading">What's New</h2>
+    <div class="featured-grid">
+      {featured.map((post) => (
+        <a href={`/blog/${post.id}`} class="featured-card">
+          <div class="featured-card-image">
+            <span>{post.data.title}</span>
+          </div>
+          <h3>{post.data.title}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+ 
+  <section>
+    <h2 class="section-heading">The Latest</h2>
+    <div class="latest-grid">
+      {latest.map((post) => (
+        <a href={`/blog/${post.id}`} class="latest-card">
+          <h3>{post.data.title}</h3>
+          <p class="latest-meta">{post.data.description}</p>
+          <p class="latest-excerpt">{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+ 
+</Layout>

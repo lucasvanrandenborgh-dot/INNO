@@ -1,0 +1,1262 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Music Timeline">
+
+<div class="tl-wrap">
+
+  <header class="tl-header">
+    <h1>My Musical Timeline</h1>
+    <p>The biggest moments, eras, and evolutions — from the 1940s to today</p>
+  </header>
+
+  
+
+  <div class="timeline">
+
+    <!-- 1940s -->
+    <section class="decade-section d1940" data-decade="d1940">
+      <div class="decade-label"><span>1940s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1940–1945</div>
+            <div class="event-title">The Swing Era Peaks</div>
+            <div class="event-desc">Big Band and Swing dominated American music, filling ballrooms and radio stations nationwide with infectious dance rhythms.</div>
+            <div class="event-tags">
+              <span class="tag">Swing</span>
+              <span class="tag">Big Band</span>
+              <span class="tag">Jazz</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Duke Ellington</span>
+                <span class="artist-chip">Benny Goodman</span>
+                <span class="artist-chip">Glenn Miller</span>
+                <span class="artist-chip">Count Basie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1944</div>
+            <div class="event-title">Birth of Bebop</div>
+            <div class="event-desc">A revolution in jazz — faster tempos, complex harmonies, and improvisation-first. Bebop was music for listening, not just dancing.</div>
+            <div class="event-tags">
+              <span class="tag">Bebop</span>
+              <span class="tag">Jazz</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Charlie Parker</span>
+                <span class="artist-chip">Dizzy Gillespie</span>
+                <span class="artist-chip">Thelonious Monk</span>
+                <span class="artist-chip">Miles Davis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1947–1949</div>
+            <div class="event-title">Rhythm &amp; Blues Emerges</div>
+            <div class="event-desc">R&amp;B grew from gospel and blues, blending electric guitars and soulful vocals. Billboard launches its "R&amp;B Charts" in 1949, cementing the genre's identity.</div>
+            <div class="event-tags">
+              <span class="tag">R&amp;B</span>
+              <span class="tag">Blues</span>
+              <span class="tag">Gospel</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Louis Jordan</span>
+                <span class="artist-chip">Muddy Waters</span>
+                <span class="artist-chip">Wynonie Harris</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1950s -->
+    <section class="decade-section d1950" data-decade="d1950">
+      <div class="decade-label"><span>1950s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1951–1954</div>
+            <div class="event-title">Birth of Rock &amp; Roll</div>
+            <div class="event-desc">Rock &amp; Roll exploded from the collision of R&amp;B, gospel, and country. Electric, rebellious, and youth-driven — it would change everything.</div>
+            <div class="event-tags">
+              <span class="tag">Rock &amp; Roll</span>
+              <span class="tag">Revolution</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Chuck Berry</span>
+                <span class="artist-chip">Little Richard</span>
+                <span class="artist-chip">Fats Domino</span>
+                <span class="artist-chip">Bo Diddley</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1956</div>
+            <div class="event-title">Elvis Presley Takes Over</div>
+            <div class="event-desc">Elvis fused country, blues, and gospel into a superstar persona the world had never seen. His TV appearances and hip-shaking performances caused a national sensation.</div>
+            <div class="event-tags">
+              <span class="tag">Rock &amp; Roll</span>
+              <span class="tag">Pop</span>
+              <span class="tag">Icon</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Moments</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Sun Records debut</span>
+                <span class="artist-chip">Ed Sullivan Show</span>
+                <span class="artist-chip">Heartbreak Hotel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1950s</div>
+            <div class="event-title">Doo-Wop &amp; Vocal Harmony</div>
+            <div class="event-desc">Street-corner vocal groups blended gospel harmonies with pop melodies, creating a warm, romantic sound that defined teenage love songs.</div>
+            <div class="event-tags">
+              <span class="tag">Doo-Wop</span>
+              <span class="tag">Vocal</span>
+              <span class="tag">Pop</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">The Platters</span>
+                <span class="artist-chip">The Drifters</span>
+                <span class="artist-chip">Frankie Lymon</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1960s -->
+    <section class="decade-section d1960" data-decade="d1960">
+      <div class="decade-label"><span>1960s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1961</div>
+            <div class="event-title">Motown Rises</div>
+            <div class="event-desc">Berry Gordy's Motown Records in Detroit crafted a slick, radio-ready blend of soul, pop, and R&amp;B that crossed racial barriers and conquered the charts.</div>
+            <div class="event-tags">
+              <span class="tag">Soul</span>
+              <span class="tag">Motown</span>
+              <span class="tag">R&amp;B</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Marvin Gaye</span>
+                <span class="artist-chip">Stevie Wonder</span>
+                <span class="artist-chip">The Supremes</span>
+                <span class="artist-chip">The Temptations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1964</div>
+            <div class="event-title">The British Invasion</div>
+            <div class="event-desc">The Beatles land in America and ignite Beatlemania. Alongside them, a wave of British acts completely reshape rock and roll and youth culture worldwide.</div>
+            <div class="event-tags">
+              <span class="tag">Rock</span>
+              <span class="tag">British Invasion</span>
+              <span class="tag">Pop</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">The Beatles</span>
+                <span class="artist-chip">The Rolling Stones</span>
+                <span class="artist-chip">The Kinks</span>
+                <span class="artist-chip">The Who</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1965</div>
+            <div class="event-title">Dylan Goes Electric</div>
+            <div class="event-desc">Bob Dylan plugs in at Newport Folk Festival, scandalising folk purists but signalling a new era where rock could carry serious, poetic weight.</div>
+            <div class="event-tags">
+              <span class="tag">Folk</span>
+              <span class="tag">Rock</span>
+              <span class="tag">Protest</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Bob Dylan</span>
+                <span class="artist-chip">Joan Baez</span>
+                <span class="artist-chip">Pete Seeger</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1967–1969</div>
+            <div class="event-title">Psychedelia &amp; The Summer of Love</div>
+            <div class="event-desc">Sgt. Pepper's, Hendrix, and the counterculture movement pushed music into surreal, mind-expanding territory. Woodstock in 1969 became its defining moment.</div>
+            <div class="event-tags">
+              <span class="tag">Psychedelic</span>
+              <span class="tag">Rock</span>
+              <span class="tag">Counterculture</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">The Beatles</span>
+                <span class="artist-chip">Jimi Hendrix</span>
+                <span class="artist-chip">Janis Joplin</span>
+                <span class="artist-chip">The Doors</span>
+                <span class="artist-chip">Jefferson Airplane</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1970s -->
+    <section class="decade-section d1970" data-decade="d1970">
+      <div class="decade-label"><span>1970s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">Early 1970s</div>
+            <div class="event-title">Hard Rock &amp; Heavy Metal</div>
+            <div class="event-desc">Rock grew louder, heavier, and darker. Distorted guitars, thundering drums, and powerful vocals created a new genre built for arenas.</div>
+            <div class="event-tags">
+              <span class="tag">Metal</span>
+              <span class="tag">Hard Rock</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Black Sabbath</span>
+                <span class="artist-chip">Led Zeppelin</span>
+                <span class="artist-chip">Deep Purple</span>
+                <span class="artist-chip">Ozzy Osbourne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1973</div>
+            <div class="event-title">Birth of Hip Hop</div>
+            <div class="event-desc">DJ Kool Herc's back-to-school party in the Bronx, New York, is widely credited as the birth of hip hop — isolating the drum break and looping it became the foundation of an entire culture.</div>
+            <div class="event-tags">
+              <span class="tag">Hip Hop</span>
+              <span class="tag">DJing</span>
+              <span class="tag">Origin</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Figures</h4>
+              <div class="artists-list">
+                <span class="artist-chip">DJ Kool Herc</span>
+                <span class="artist-chip">Grandmaster Flash</span>
+                <span class="artist-chip">Afrika Bambaataa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1974–1979</div>
+            <div class="event-title">The Disco Era</div>
+            <div class="event-desc">Glittering clubs, four-on-the-floor rhythms, and orchestral arrangements defined an era of hedonism. Saturday Night Fever (1977) made it a global phenomenon.</div>
+            <div class="event-tags">
+              <span class="tag">Disco</span>
+              <span class="tag">Dance</span>
+              <span class="tag">Pop</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Donna Summer</span>
+                <span class="artist-chip">Bee Gees</span>
+                <span class="artist-chip">Gloria Gaynor</span>
+                <span class="artist-chip">ABBA</span>
+                <span class="artist-chip">Chic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1976–1977</div>
+            <div class="event-title">Punk Explodes</div>
+            <div class="event-desc">A furious reaction to bloated rock excess — fast, raw, and political. Punk stripped music back to three chords and pure attitude, reshaping youth culture forever.</div>
+            <div class="event-tags">
+              <span class="tag">Punk</span>
+              <span class="tag">Rock</span>
+              <span class="tag">DIY</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Sex Pistols</span>
+                <span class="artist-chip">The Clash</span>
+                <span class="artist-chip">Ramones</span>
+                <span class="artist-chip">Buzzcocks</span>
+                <span class="artist-chip">Patti Smith</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1970s</div>
+            <div class="event-title">Funk &amp; Soul Reign</div>
+            <div class="event-desc">Funk's syncopated grooves and soul's emotional depth dominated Black music, laying the rhythmic foundation that hip hop would later sample endlessly.</div>
+            <div class="event-tags">
+              <span class="tag">Funk</span>
+              <span class="tag">Soul</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">James Brown</span>
+                <span class="artist-chip">Parliament-Funkadelic</span>
+                <span class="artist-chip">Sly &amp; The Family Stone</span>
+                <span class="artist-chip">Al Green</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1980s -->
+    <section class="decade-section d1980" data-decade="d1980">
+      <div class="decade-label"><span>1980s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1981</div>
+            <div class="event-title">MTV Launches</div>
+            <div class="event-desc">Music Television debuts with "Video Killed the Radio Star." The music video becomes an art form and marketing tool, reshaping how artists build their image and reach audiences.</div>
+            <div class="event-tags">
+              <span class="tag">MTV</span>
+              <span class="tag">Visual</span>
+              <span class="tag">Media</span>
+            </div>
+            <div class="event-detail">
+              <h4>Impact</h4>
+              <div class="artists-list">
+                <span class="artist-chip">First video: The Buggles</span>
+                <span class="artist-chip">Michael Jackson's Thriller video</span>
+                <span class="artist-chip">Madonna's visual era</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1982</div>
+            <div class="event-title">Thriller — The Biggest Album Ever</div>
+            <div class="event-desc">Michael Jackson's Thriller becomes the best-selling album in history. It pushes pop, R&amp;B, rock, and disco into one massive crossover phenomenon.</div>
+            <div class="event-tags">
+              <span class="tag">Pop</span>
+              <span class="tag">R&amp;B</span>
+              <span class="tag">Icon</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Facts</h4>
+              <div class="artists-list">
+                <span class="artist-chip">66+ million copies sold</span>
+                <span class="artist-chip">7 top-10 singles</span>
+                <span class="artist-chip">Directed by John Landis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1980–1986</div>
+            <div class="event-title">Synth-Pop &amp; New Wave</div>
+            <div class="event-desc">Synthesizers replaced guitars as the defining instrument of a generation. Cold, danceable, and futuristic — synth-pop gave the decade its sonic identity.</div>
+            <div class="event-tags">
+              <span class="tag">Synth-Pop</span>
+              <span class="tag">New Wave</span>
+              <span class="tag">Electronic</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Depeche Mode</span>
+                <span class="artist-chip">New Order</span>
+                <span class="artist-chip">Kraftwerk</span>
+                <span class="artist-chip">Gary Numan</span>
+                <span class="artist-chip">Eurythmics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1984–1987</div>
+            <div class="event-title">House Music Born in Chicago</div>
+            <div class="event-desc">DJ Frankie Knuckles and the Warehouse club in Chicago pioneer a new electronic dance sound — repetitive, hypnotic, and soulful. The foundations of modern club music.</div>
+            <div class="event-tags">
+              <span class="tag">House</span>
+              <span class="tag">Electronic</span>
+              <span class="tag">Dance</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Figures</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Frankie Knuckles</span>
+                <span class="artist-chip">Larry Heard</span>
+                <span class="artist-chip">Jesse Saunders</span>
+                <span class="artist-chip">Marshall Jefferson</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1985–1988</div>
+            <div class="event-title">Techno Emerges in Detroit</div>
+            <div class="event-desc">Three young Black musicians in Detroit create Techno — a cold, mechanical, futuristic sound inspired by Kraftwerk and the city's industrial decline.</div>
+            <div class="event-tags">
+              <span class="tag">Techno</span>
+              <span class="tag">Electronic</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Juan Atkins</span>
+                <span class="artist-chip">Derrick May</span>
+                <span class="artist-chip">Kevin Saunderson</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1986–1988</div>
+            <div class="event-title">Hip Hop Goes Mainstream</div>
+            <div class="event-desc">Run DMC's crossover with Aerosmith, LL Cool J, and Public Enemy bring hip hop from the Bronx block parties to the national mainstream.</div>
+            <div class="event-tags">
+              <span class="tag">Hip Hop</span>
+              <span class="tag">Rap</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Run DMC</span>
+                <span class="artist-chip">LL Cool J</span>
+                <span class="artist-chip">Public Enemy</span>
+                <span class="artist-chip">N.W.A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 1990s -->
+    <section class="decade-section d1990" data-decade="d1990">
+      <div class="decade-label"><span>1990s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1991</div>
+            <div class="event-title">Nevermind &amp; the Grunge Explosion</div>
+            <div class="event-desc">Nirvana's Nevermind dethrones Michael Jackson from No.1, signalling a seismic shift. Grunge — raw, angsty, and anti-corporate — becomes the voice of a generation.</div>
+            <div class="event-tags">
+              <span class="tag">Grunge</span>
+              <span class="tag">Alternative</span>
+              <span class="tag">Rock</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Nirvana</span>
+                <span class="artist-chip">Pearl Jam</span>
+                <span class="artist-chip">Soundgarden</span>
+                <span class="artist-chip">Alice in Chains</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1991–1997</div>
+            <div class="event-title">The Golden Age of Hip Hop</div>
+            <div class="event-desc">Lyricism, production, and cultural influence hit an all-time peak. East Coast vs West Coast rivalry, conscious rap, and storytelling rap all flourished side by side.</div>
+            <div class="event-tags">
+              <span class="tag">Hip Hop</span>
+              <span class="tag">Rap</span>
+              <span class="tag">Golden Age</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Nas</span>
+                <span class="artist-chip">Wu-Tang Clan</span>
+                <span class="artist-chip">The Notorious B.I.G.</span>
+                <span class="artist-chip">Tupac</span>
+                <span class="artist-chip">Jay-Z</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1994–1997</div>
+            <div class="event-title">Britpop</div>
+            <div class="event-desc">A British cultural revival — guitar bands reclaim the charts with swagger, melody, and a very English identity. Oasis vs. Blur becomes the defining cultural clash of the decade.</div>
+            <div class="event-tags">
+              <span class="tag">Britpop</span>
+              <span class="tag">Indie</span>
+              <span class="tag">Rock</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Oasis</span>
+                <span class="artist-chip">Blur</span>
+                <span class="artist-chip">Pulp</span>
+                <span class="artist-chip">Elastica</span>
+                <span class="artist-chip">Suede</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1988–1998</div>
+            <div class="event-title">Rave Culture &amp; Electronic Music</div>
+            <div class="event-desc">Acid House, Rave, and electronic music explode across the UK and Europe. Illegal warehouse parties and the ecstasy culture create a seismic underground movement.</div>
+            <div class="event-tags">
+              <span class="tag">Rave</span>
+              <span class="tag">Electronic</span>
+              <span class="tag">Techno</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">The Prodigy</span>
+                <span class="artist-chip">The Chemical Brothers</span>
+                <span class="artist-chip">Daft Punk</span>
+                <span class="artist-chip">Underworld</span>
+                <span class="artist-chip">Aphex Twin</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2000s -->
+    <section class="decade-section d2000" data-decade="d2000">
+      <div class="decade-label"><span>2000s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">1999–2001</div>
+            <div class="event-title">Napster &amp; The Digital Revolution</div>
+            <div class="event-desc">Napster's peer-to-peer file sharing turns music free overnight, devastating the record industry. It forces the industry to reinvent itself or collapse.</div>
+            <div class="event-tags">
+              <span class="tag">Digital</span>
+              <span class="tag">Internet</span>
+              <span class="tag">Industry</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Events</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Napster launches 1999</span>
+                <span class="artist-chip">Metallica sues Napster</span>
+                <span class="artist-chip">iTunes Store opens 2003</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2001–2006</div>
+            <div class="event-title">The Indie Rock Revival</div>
+            <div class="event-desc">A wave of guitar bands bring back raw, energetic rock — short songs, cool haircuts, and a downtown New York attitude. MySpace helps them find audiences without labels.</div>
+            <div class="event-tags">
+              <span class="tag">Indie</span>
+              <span class="tag">Rock</span>
+              <span class="tag">Alternative</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">The Strokes</span>
+                <span class="artist-chip">Arctic Monkeys</span>
+                <span class="artist-chip">The White Stripes</span>
+                <span class="artist-chip">Franz Ferdinand</span>
+                <span class="artist-chip">Interpol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2003</div>
+            <div class="event-title">iTunes Store Opens</div>
+            <div class="event-desc">Apple launches iTunes Store at 99 cents a song — legitimising digital music purchasing and beginning the end of the CD era.</div>
+            <div class="event-tags">
+              <span class="tag">Digital</span>
+              <span class="tag">Apple</span>
+              <span class="tag">Industry</span>
+            </div>
+            <div class="event-detail">
+              <h4>Impact</h4>
+              <div class="artists-list">
+                <span class="artist-chip">1 billion songs sold by 2006</span>
+                <span class="artist-chip">CD sales collapse</span>
+                <span class="artist-chip">Paved the way for streaming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2010s -->
+    <section class="decade-section d2010" data-decade="d2010">
+      <div class="decade-label"><span>2010s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2011</div>
+            <div class="event-title">Streaming Takes Over</div>
+            <div class="event-desc">Spotify reaches 1 million subscribers. Streaming overtakes downloads and physical sales within years — the album cycle, radio, and music retail are all fundamentally disrupted.</div>
+            <div class="event-tags">
+              <span class="tag">Streaming</span>
+              <span class="tag">Digital</span>
+              <span class="tag">Industry</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Platforms</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Spotify</span>
+                <span class="artist-chip">Apple Music</span>
+                <span class="artist-chip">Tidal</span>
+                <span class="artist-chip">SoundCloud</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2012–2016</div>
+            <div class="event-title">Trap Music Rises</div>
+            <div class="event-desc">808 bass, hi-hat triplets, and dark, atmospheric production define a new sound born in Atlanta that comes to dominate both hip hop and pop charts worldwide.</div>
+            <div class="event-tags">
+              <span class="tag">Trap</span>
+              <span class="tag">Hip Hop</span>
+              <span class="tag">Atlanta</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Young Jeezy</span>
+                <span class="artist-chip">Gucci Mane</span>
+                <span class="artist-chip">Future</span>
+                <span class="artist-chip">Travis Scott</span>
+                <span class="artist-chip">Drake</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2012–2016</div>
+            <div class="event-title">EDM Goes Global</div>
+            <div class="event-desc">Electronic Dance Music explodes into stadiums and festival main stages. DJs become the highest-paid performers in the world.</div>
+            <div class="event-tags">
+              <span class="tag">EDM</span>
+              <span class="tag">Electronic</span>
+              <span class="tag">Festival</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Avicii</span>
+                <span class="artist-chip">Skrillex</span>
+                <span class="artist-chip">Calvin Harris</span>
+                <span class="artist-chip">Deadmau5</span>
+                <span class="artist-chip">Daft Punk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">Late 2010s</div>
+            <div class="event-title">Bedroom Pop &amp; Lo-Fi</div>
+            <div class="event-desc">Cheap recording software democratises music production. Bedroom producers making hazy, intimate music amass huge streaming numbers without labels or studios.</div>
+            <div class="event-tags">
+              <span class="tag">Bedroom Pop</span>
+              <span class="tag">Lo-Fi</span>
+              <span class="tag">Indie</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Billie Eilish</span>
+                <span class="artist-chip">Rex Orange County</span>
+                <span class="artist-chip">Clairo</span>
+                <span class="artist-chip">boy pablo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2020s -->
+    <section class="decade-section d2020" data-decade="d2020">
+      <div class="decade-label"><span>2020s</span></div>
+      <div class="events">
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2020–Present</div>
+            <div class="event-title">TikTok Rewrites the Rules</div>
+            <div class="event-desc">A 15-second clip can launch an unknown artist to millions. TikTok becomes the most powerful music discovery platform on earth, and songs are now often written backwards from the hook.</div>
+            <div class="event-tags">
+              <span class="tag">Social Media</span>
+              <span class="tag">Viral</span>
+              <span class="tag">Discovery</span>
+            </div>
+            <div class="event-detail">
+              <h4>Examples</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Olivia Rodrigo</span>
+                <span class="artist-chip">Ice Spice</span>
+                <span class="artist-chip">Doja Cat</span>
+                <span class="artist-chip">Numerous overnight viral acts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2020–Present</div>
+            <div class="event-title">Hyperpop &amp; Genre Dissolution</div>
+            <div class="event-desc">Genre boundaries collapse entirely. Hyperpop mashes PC Music gloss, metal, hip hop, and electronic into something intentionally overwhelming. Artists move freely between styles.</div>
+            <div class="event-tags">
+              <span class="tag">Hyperpop</span>
+              <span class="tag">Electronic</span>
+              <span class="tag">Experimental</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Artists</h4>
+              <div class="artists-list">
+                <span class="artist-chip">100 gecs</span>
+                <span class="artist-chip">Charli XCX</span>
+                <span class="artist-chip">SOPHIE</span>
+                <span class="artist-chip">Arca</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event" onclick="toggleDetail(this)">
+          <div class="event-dot"></div>
+          <div class="event-card">
+            <div class="event-year">2023–Present</div>
+            <div class="event-title">AI Enters the Studio</div>
+            <div class="event-desc">AI-generated music and AI-cloned voices raise urgent questions about authorship, copyright, and the future of artistry. The industry scrambles to adapt.</div>
+            <div class="event-tags">
+              <span class="tag">AI</span>
+              <span class="tag">Technology</span>
+              <span class="tag">Future</span>
+            </div>
+            <div class="event-detail">
+              <h4>Key Events</h4>
+              <div class="artists-list">
+                <span class="artist-chip">Fake Drake AI track goes viral</span>
+                <span class="artist-chip">Suno &amp; Udio launch</span>
+                <span class="artist-chip">Record labels sue AI companies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</div> <!-- end .tl-wrap -->
+
+</Layout>
+
+<style is:global>
+  /* ── Outer wrapper — everything scoped inside .tl-wrap ── */
+  .tl-wrap {
+    color: #f0f0f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    position: relative;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 100%),
+      url('/images/piano.jpg');
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    background-position: top center;
+  }
+
+  .tl-wrap .tl-header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(180deg, rgba(26,10,46,0.8) 0%, transparent 100%);
+  }
+
+  .tl-wrap .tl-header h1 { 
+    font-family: 'Danfo', serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #0c3a1f, #84ba20, #dbde0c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+  }
+
+  .tl-wrap .tl-header p {
+    margin-top: 12px;
+    color: #888;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Filter bar ── */
+  .tl-wrap .filter-bar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px;
+    padding: 24px 20px;
+    position: sticky;
+    top: 0;
+    background: rgba(8,8,8,0.88);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid #222;
+    border-radius: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .tl-wrap .filter-bar .filter-btn {
+    display: inline-block !important;
+    width: auto !important;
+    flex: 0 0 auto !important;
+    background: #1a1a1a !important;
+    color: #aaa !important;
+    border: 1px solid #333 !important;
+    border-radius: 20px !important;
+    padding: 7px 18px !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    line-height: normal !important;
+    box-shadow: none !important;
+  }
+
+  .tl-wrap .filter-bar .filter-btn:hover {
+    background: #252525 !important;
+    color: #fff !important;
+    border-color: #555 !important;
+  }
+
+  .tl-wrap .filter-bar .filter-btn.active {
+    background: #7c4dff !important;
+    color: #fff !important;
+    border-color: #7c4dff !important;
+  }
+
+  /* ── Timeline spine ── */
+  .tl-wrap .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px 100px;
+    position: relative;
+  }
+
+  .tl-wrap .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #104112, #5de111, #d0e511, #eead16);
+    transform: translateX(-50%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* ── Decade sections ── */
+  .tl-wrap .decade-section {
+    margin-bottom: 16px;
+  }
+
+  .tl-wrap .decade-section.hidden { display: none !important; }
+
+  .tl-wrap .decade-label {
+    text-align: center;
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .tl-wrap .decade-label span {
+    font-family: 'Danfo', serif;
+    display: inline-block !important;
+    width: auto !important;
+    background: rgba(13,13,13,0.85);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    border: 2px solid;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+  }
+
+  /* ── Event rows ── */
+  .tl-wrap .events {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px;
+  }
+
+  .tl-wrap .event {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px;
+    align-items: flex-start;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .tl-wrap .event:nth-child(odd) {
+    flex-direction: row-reverse !important;
+    text-align: right;
+  }
+
+  .tl-wrap .event:nth-child(odd) .event-tags {
+    justify-content: flex-end;
+  }
+
+  /* ── Dot ── */
+  .tl-wrap .event-dot {
+    flex-shrink: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    margin-top: 6px;
+    border: 3px solid;
+    background: rgba(13,13,13,0.9);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s ease;
+    display: block !important;
+  }
+
+  .tl-wrap .event:hover .event-dot { transform: scale(1.5); }
+
+  /* ── Card ── */
+  .tl-wrap .event-card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 18px 22px;
+    flex: 1 1 0 !important;
+    min-width: 0;
+    max-width: calc(50% - 28px) !important;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .tl-wrap .event:hover .event-card {
+    background: #1c1c1c;
+    border-color: #333;
+    transform: translateY(-2px);
+  }
+
+  .tl-wrap .event-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .tl-wrap .event-title {
+    font-family: 'Danfo', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    color: #f0f0f0;
+  }
+
+  .tl-wrap .event-desc {
+    font-size: 0.88rem;
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .tl-wrap .event-tags {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px;
+  }
+
+  .tl-wrap .tag {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  /* ── Expandable detail ── */
+  .tl-wrap .event-detail {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .tl-wrap .event-detail.open { display: block; }
+
+  .tl-wrap .event-detail h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .tl-wrap .artists-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px;
+  }
+
+  .tl-wrap .artist-chip {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: #ccc;
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  /* ── Decade colour themes ── */
+  .tl-wrap .d1940 .decade-label span { border-color: #ff6b35; color: #ff6b35; }
+  .tl-wrap .d1940 .event-dot { border-color: #ff6b35; }
+  .tl-wrap .d1940 .event-year { color: #ff6b35; opacity: 1; }
+  .tl-wrap .d1940 .tag { background: rgba(255,107,53,0.15); color: #ff6b35; }
+
+  .tl-wrap .d1950 .decade-label span { border-color: #ffd700; color: #ffd700; }
+  .tl-wrap .d1950 .event-dot { border-color: #ffd700; }
+  .tl-wrap .d1950 .event-year { color: #ffd700; opacity: 1; }
+  .tl-wrap .d1950 .tag { background: rgba(255,215,0,0.12); color: #ffd700; }
+
+  .tl-wrap .d1960 .decade-label span { border-color: #4caf50; color: #4caf50; }
+  .tl-wrap .d1960 .event-dot { border-color: #4caf50; }
+  .tl-wrap .d1960 .event-year { color: #4caf50; opacity: 1; }
+  .tl-wrap .d1960 .tag { background: rgba(76,175,80,0.12); color: #4caf50; }
+
+  .tl-wrap .d1970 .decade-label span { border-color: #ff4081; color: #ff4081; }
+  .tl-wrap .d1970 .event-dot { border-color: #ff4081; }
+  .tl-wrap .d1970 .event-year { color: #ff4081; opacity: 1; }
+  .tl-wrap .d1970 .tag { background: rgba(255,64,129,0.12); color: #ff4081; }
+
+  .tl-wrap .d1980 .decade-label span { border-color: #00e5ff; color: #00e5ff; }
+  .tl-wrap .d1980 .event-dot { border-color: #00e5ff; }
+  .tl-wrap .d1980 .event-year { color: #00e5ff; opacity: 1; }
+  .tl-wrap .d1980 .tag { background: rgba(0,229,255,0.12); color: #00e5ff; }
+
+  .tl-wrap .d1990 .decade-label span { border-color: #7c4dff; color: #7c4dff; }
+  .tl-wrap .d1990 .event-dot { border-color: #7c4dff; }
+  .tl-wrap .d1990 .event-year { color: #7c4dff; opacity: 1; }
+  .tl-wrap .d1990 .tag { background: rgba(124,77,255,0.12); color: #7c4dff; }
+
+  .tl-wrap .d2000 .decade-label span { border-color: #e040fb; color: #e040fb; }
+  .tl-wrap .d2000 .event-dot { border-color: #e040fb; }
+  .tl-wrap .d2000 .event-year { color: #e040fb; opacity: 1; }
+  .tl-wrap .d2000 .tag { background: rgba(224,64,251,0.12); color: #e040fb; }
+
+  .tl-wrap .d2010 .decade-label span { border-color: #ff9100; color: #ff9100; }
+  .tl-wrap .d2010 .event-dot { border-color: #ff9100; }
+  .tl-wrap .d2010 .event-year { color: #ff9100; opacity: 1; }
+  .tl-wrap .d2010 .tag { background: rgba(255,145,0,0.12); color: #ff9100; }
+
+  .tl-wrap .d2020 .decade-label span { border-color: #69f0ae; color: #69f0ae; }
+  .tl-wrap .d2020 .event-dot { border-color: #69f0ae; }
+  .tl-wrap .d2020 .event-year { color: #69f0ae; opacity: 1; }
+  .tl-wrap .d2020 .tag { background: rgba(105,240,174,0.12); color: #69f0ae; }
+
+  /* ── Mobile ── */
+  @media (max-width: 700px) {
+    .tl-wrap .timeline::before { left: 20px; }
+    .tl-wrap .event,
+    .tl-wrap .event:nth-child(odd) {
+      flex-direction: row !important;
+      text-align: left !important;
+    }
+    .tl-wrap .event:nth-child(odd) .event-tags { justify-content: flex-start !important; }
+    .tl-wrap .event-card { max-width: 100% !important; }
+    .tl-wrap .event-dot { margin-left: 4px; }
+  }
+</style>
+
+<script>
+  function toggleDetail(eventEl: HTMLElement) {
+    const detail = eventEl.querySelector('.event-detail');
+    if (!detail) return;
+    const isOpen = detail.classList.contains('open');
+    document.querySelectorAll('.event-detail.open').forEach(d => d.classList.remove('open'));
+    if (!isOpen) detail.classList.add('open');
+  }
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const sections = document.querySelectorAll('.decade-section');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = (btn as HTMLElement).dataset.filter;
+      sections.forEach(section => {
+        if (filter === 'all' || (section as HTMLElement).dataset.decade === filter) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  (window as any).toggleDetail = toggleDetail;
+</script>

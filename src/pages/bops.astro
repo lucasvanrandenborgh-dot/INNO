@@ -7,42 +7,92 @@ const albums = [
     artist: "THE THE",
     year: 1983,
     cover: "https://m.media-amazon.com/images/I/71nqjdNI3NL._UF894,1000_QL80_.jpg",
-    text: "A soulful post-punk album that channels existential restlessness and raw emotion through eclectic, layered arrangements and Matt Johnson's searingly honest songwriting."
+    text: "A soulful post-punk album that ma entire existence."
   },
   { 
     title: "Solitude on Guitar",
     artist: "Baden Powell de Aquinho",
     year: 1973,
     cover: "https://m.media-amazon.com/images/I/812ePp3mv0L._UF1000,1000_QL80_.jpg",
-    text: "A masterful solo acoustic album that showcases his technique and deep soulfulness, combining Brazilian samba, bossa nova, and classical influences into a moving listening experience."
+    text: "Music that makes you"
+     },
+  {
+    title: "#1 Record",
+    artist: "Big Star",
+    year: 1972,
+    cover: "https://m.media-amazon.com/images/I/61hm5VBi5kL._UF894,1000_QL80_.jpg",
+    text: "Best Band to never make it big."
+    },
+    {
+    title: "Vespertine",
+    artist: "Björk",
+    year: 2001,
+    cover: "https://m.media-amazon.com/images/I/71c04yTzrsL._UF894,1000_QL80_.jpg",
+    text: "Sounds like something you would find in cave."
   },
   {
     title: "Nebraska",
     artist: "Bruce Springsteen",
     year: 1982,
     cover: "https://m.media-amazon.com/images/I/71fGFktZFTL.jpg",
-    text: "Nebraska is a stark and haunting acoustic record that strips away all rock grandeur to expose the quiet desperation, moral ambiguity, and fractured dreams of working-class American life."
+    text: "I have never come closer to feeling like a working-class American."
+  },
+  {
+    title: "Electric Counterpoint",
+    artist: "Steve Reich",
+    year: 1987,
+    cover: "https://m.media-amazon.com/images/I/91w7qhf4ryL._UF894,1000_QL80_.jpg",
+    text: "Music that can make you forget your listening to music."
+   },
+  {
+    title: "Push the Sky Away",
+    artist: "Nick Cave & The Bad Seeds",
+    year: 2016,
+    cover: "https://m.media-amazon.com/images/I/61Tt9129MHL._UF894,1000_QL80_.jpg",
+    text: "I listen to this one and pretend to understand what he's singing about."
+  },
+  {
+    title: "Band of Gypsies",
+    artist: "Jimi Hendrix",
+    year: 1970,
+    cover: "https://m.media-amazon.com/images/I/81tNYWtociL._UF894,1000_QL80_.jpg",
+    text: "By guitarists for guitarists."
   },
   {
     title: "Async",
     artist: "Ryuichi Sakamoto",
     year: 2017,
     cover: "https://m.media-amazon.com/images/I/71a7xsY-sCL._UF894,1000_QL80_.jpg",
-    text: "A beautiful ambient album that weaves together fragmented soundscapes, silence, and dissonance to create a deeply meditative reflection on time, nature, and mortality."
+    text: "Best album to listen to when in a Zen garden."
   },
   {
     title: "A Hundred Days Off",
     artist: "Underworld",
     year: 2002,
     cover: "https://images.thalia.media/07/-/029edaefb20141f29166ee33b4734e72/a-hundred-days-off-reissue-cd-underworld.jpeg",
-    text: "A hypnotic electronic album that blends pulsating techno rhythms with dreamy, introspective textures, capturing a sense of quiet euphoria and restless energy."
+    text: "Best Album with 0 chords changes."
+  },
+  {
+    title: "Combat Rock",
+    artist: "The Clash",
+    year: 1986,
+    cover: "https://m.media-amazon.com/images/I/81A86Lm7+KL._UF894,1000_QL80_.jpg",
+    text: "The biggest hit from this album is the bands worst song."
+  },
+  {
+    title: "Songs of Faith and Devotion",
+    artist: "Depeche Mode",
+    year: 1993,
+    cover: "https://www.rollingstone.de/wp-content/uploads/2013/03/Depeche_Mode-Songs_Of_Faith_And_Devotion-Frontal_BINARY_554442.jpg",
+    text: "Music for people without shoes."
   },
 ];
 ---
 
 <Layout title="My All-Time Classic Bops">
+  <link href="https://fonts.googleapis.com/css2?family=Danfo&family=Molle:ital@1&family=Chicle&display=swap" rel="stylesheet">
   <section class="bops">
-    <h2 class="section-title">My All-Time Classic Bops</h2>
+    <h2 class="section-title">All-Time Classic Bops</h2>
     {albums.map((album) => (
       <article class="album">
         <img src={album.cover} alt={`${album.title} cover`} class="album-cover" />
@@ -58,11 +108,11 @@ const albums = [
 
 <style>
   .section-title {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
+    font-family: 'Danfo', serif;
+    font-size: 3.0rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #888;
+    color: #000000;
     margin-bottom: 30px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
@@ -89,13 +139,14 @@ const albums = [
   }
 
   .album-title {
-    font-size: 1.3rem;
+    font-family: 'Chicle', serif;
+    font-size: 2.0rem;
     margin-bottom: 4px;
   }
 
   .album-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
+    font-family: 'Chicle', cursive;
+    font-size: 1.5rem;
     color: #aaa;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -103,7 +154,8 @@ const albums = [
   }
 
   .album-text {
-    font-size: 0.95rem;
+    font-family: 'Chicle', cursive;
+    font-size: 1.3rem;
     color: #444;
     line-height: 1.6;
   }

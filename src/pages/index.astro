@@ -1,39 +1,48 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
- 
-const posts = await getCollection('blog');
-const featured = posts.slice(0, 2);
-const latest = posts.slice(0, 8);
 ---
- 
-<Layout title="That's a Bop!">
- 
-  <section>
-    <h2 class="section-heading">What's New</h2>
-    <div class="featured-grid">
-      {featured.map((post) => (
-        <a href={`/blog/${post.id}`} class="featured-card">
-          <div class="featured-card-image">
-            <span>{post.data.title}</span>
-          </div>
-          <h3>{post.data.title}</h3>
-        </a>
-      ))}
-    </div>
-  </section>
- 
-  <section>
-    <h2 class="section-heading">The Latest</h2>
-    <div class="latest-grid">
-      {latest.map((post) => (
-        <a href={`/blog/${post.id}`} class="latest-card">
-          <h3>{post.data.title}</h3>
-          <p class="latest-meta">{post.data.description}</p>
-          <p class="latest-excerpt">{post.data.description}</p>
-        </a>
-      ))}
-    </div>
-  </section>
- 
-</Layout>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>That's a Bop!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background-color: #000000;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease;
+      }
+      body.fade-out {
+        opacity: 0;
+      }
+      a {
+        font-family: 'Danfo', serif;
+        font-size: 8rem;
+        color: #fff;
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+      a:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/home" id="enter">That's a Bop!</a>
+
+    <script>
+      document.getElementById('enter').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = '/home';
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
