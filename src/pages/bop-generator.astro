@@ -227,7 +227,7 @@ async function showResult() {
   resultContainer.innerHTML = `<p class="result-label">The Bop Generator 3000 is consulting the oracle...</p>`;
 
   try {
-    const response = await fetch('/api/generate-bop', {
+    const response = await fetch('/.netlify/functions/generate-bop', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answers }),
