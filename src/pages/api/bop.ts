@@ -63,6 +63,9 @@ Respond ONLY with a JSON object, no extra text:
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 400,
       }),
+      // Hard cap so a slow upstream call can never push us past Netlify's
+      // function timeout (which returns a raw, unhandled 500).
+      signal: AbortSignal.timeout(7000),
     });
 
     if (!groqResponse.ok) {
@@ -87,14 +90,16 @@ Respond ONLY with a JSON object, no extra text:
     let coverUrl = '';
     try {
       const itunes = await fetch(
-        `https://itunes.apple.com/search?term=${encodeURIComponent(result.artist + ' ' + result.albumTitle)}&entity=album&limit=1`
+        `https://itunes.apple.com/search?term=${encodeURIComponent(result.artist + ' ' + result.albumTitle)}&entity=album&limit=1`,
+        { signal: AbortSignal.timeout(2500) }
       );
       const itunesData = await itunes.json();
       if (itunesData.results?.length > 0) {
         coverUrl = itunesData.results[0].artworkUrl100.replace('100x100bb', '600x600bb');
       }
     } catch (e) {
-      // cover art is a nice-to-have; ignore failures
+      // Cover art is a nice-to-have; never let a slow/failed lookup block the response.
+      console.warn('[bop] Cover art lookup skipped:', e instanceof Error ? e.message : e);
     }
 
     return new Response(JSON.stringify({ ...result, coverUrl }), {
