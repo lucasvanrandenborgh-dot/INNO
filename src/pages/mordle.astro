@@ -1,0 +1,699 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="MORDLE — Guess the Musician">
+  <div class="notedle">
+    <div class="notedle-header">
+      <h1>MORDLE</h1>
+      <p>Guess the musician</p>
+    </div>
+
+    <div id="message"></div>
+    <div id="grid"></div>
+
+    <div class="hint-box" id="hintBox"></div>
+
+    <div id="keyboard"></div>
+
+    <div id="footer-actions">
+      <button class="action secondary" id="hintBtn">Reveal a hint</button>
+      <button class="action secondary" id="statsBtn">Stats</button>
+    </div>
+
+    <div class="notedle-footer">Tap letters or use your keyboard. Enter to submit, Backspace to delete.</div>
+
+    <div id="overlay">
+      <div id="modal">
+        <h2 id="modalTitle"></h2>
+        <p id="modalBody"></p>
+        <div id="share-grid"></div>
+        <button class="action" id="shareBtn">Copy Result</button>
+        <button class="action" id="playAgainBtn">Play Again</button>
+        <br><br>
+        <button class="action secondary" id="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* All Notedle styles are scoped under .notedle so they never
+     leak onto other pages — including elements the game creates
+     dynamically via JS, which Astro's automatic scoping can't reach. */
+  .notedle{
+    --bg:#121213;
+    --panel:#1e1e1f;
+    --border:#3a3a3c;
+    --border-light:#565758;
+    --text:#ffffff;
+    --green:#538d4e;
+    --yellow:#b59f3b;
+    --gray:#3a3a3c;
+    --accent:#7c5cff;
+
+    margin:0 auto;
+    max-width:640px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:24px 16px 32px;
+    border-radius:20px;
+  }
+  .notedle *{ box-sizing:border-box; }
+  .notedle-header{
+    width:100%;
+    max-width:600px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    padding:14px 0;
+    margin-bottom:18px;
+  }
+  .notedle-header h1{
+    margin:0;
+    font-size:2rem;
+    letter-spacing:0.08em;
+    font-weight:800;
+    color:var(--text);
+  }
+  .notedle-header p{
+    margin:4px 0 0;
+    font-size:0.8rem;
+    color:#aaa;
+    letter-spacing:0.05em;
+  }
+  .notedle #message{
+    min-height:1.4rem;
+    font-weight:700;
+    margin-bottom:10px;
+    text-align:center;
+    color:var(--text);
+  }
+  .notedle #grid{
+    display:grid;
+    gap:6px;
+    margin-bottom:22px;
+    max-width:96vw;
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+  .notedle .row{
+    display:grid;
+    gap:6px;
+  }
+  .notedle .tile{
+    width:52px;
+    height:52px;
+    border:2px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+    font-weight:800;
+    text-transform:uppercase;
+    border-radius:4px;
+    transition:transform .12s ease;
+    color:var(--text);
+  }
+  .notedle .tile.filled{
+    border-color:var(--border-light);
+  }
+  .notedle .tile.correct{ background:var(--green); border-color:var(--green); }
+  .notedle .tile.present{ background:var(--yellow); border-color:var(--yellow); }
+  .notedle .tile.absent{ background:var(--gray); border-color:var(--gray); }
+  .notedle .tile.pop{ animation:notedle-pop .12s ease; }
+  @keyframes notedle-pop{ 0%{transform:scale(1);} 50%{transform:scale(1.08);} 100%{transform:scale(1);} }
+  .notedle .row.shake{ animation:notedle-shake .4s ease; }
+  @keyframes notedle-shake{
+    10%,90%{ transform:translateX(-2px); }
+    20%,80%{ transform:translateX(4px); }
+    30%,50%,70%{ transform:translateX(-8px); }
+    40%,60%{ transform:translateX(8px); }
+  }
+  .notedle #keyboard{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    width:100%;
+    max-width:500px;
+    padding:0 8px;
+  }
+  .notedle .kb-row{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+  }
+  .notedle .key{
+    flex:1;
+    max-width:44px;
+    height:50px;
+    border:none;
+    border-radius:4px;
+    background:#818384;
+    color:var(--text);
+    font-weight:700;
+    font-size:0.9rem;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+  }
+  .notedle .key.wide{ flex:1.6; max-width:70px; font-size:0.7rem; }
+  .notedle .key.correct{ background:var(--green); }
+  .notedle .key.present{ background:var(--yellow); }
+  .notedle .key.absent{ background:#3a3a3c; color:#888; }
+  .notedle .key:active{ filter:brightness(1.2); }
+  .notedle #footer-actions{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .notedle button.action{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:10px 18px;
+    font-weight:700;
+    font-size:0.85rem;
+    cursor:pointer;
+    letter-spacing:0.03em;
+  }
+  .notedle button.action.secondary{
+    background:transparent;
+    border:1px solid var(--border-light);
+    color:var(--text);
+  }
+  .notedle #overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+  }
+  .notedle #overlay.show{ display:flex; }
+  .notedle #modal{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:24px;
+    max-width:380px;
+    width:88%;
+    text-align:center;
+    color:var(--text);
+  }
+  .notedle #modal h2{ margin-top:0; }
+  .notedle #modal img{
+    max-width:100%;
+    border-radius:8px;
+    margin:10px 0;
+  }
+  .notedle #share-grid{
+    font-size:1.4rem;
+    line-height:1.3;
+    white-space:pre;
+    margin:14px 0;
+  }
+  .notedle .hint-box{
+    margin-top:8px;
+    font-size:0.85rem;
+    color:#bbb;
+    min-height:1.2rem;
+    text-align:center;
+  }
+  .notedle-footer{
+    margin:30px 0 14px;
+    font-size:0.75rem;
+    color:#777;
+    text-align:center;
+  }
+</style>
+
+<script>
+/* ---------------------------------------------------------
+   ARTIST DATA
+   Each entry: display name. The "answer" used for the grid
+   is the name with spaces/punctuation stripped, uppercased.
+   This lets multi-word artist names ("The Weeknd" -> THEWEEKND)
+   work with the classic letter-tile mechanic.
+--------------------------------------------------------- */
+const ARTISTS = [
+  "Adele","Beyonce","Rihanna","Drake","Eminem","Madonna","Prince","Cher","Sting","Bjork",
+  "Pink","Halsey","Usher","Akon","Shakira","Ciara","Aaliyah","Sia","Seal","Lorde",
+  "Zayn","Lizzo","Sade","Enya","Tyga","Future","Logic","Khalid","Jhene","Kesha",
+  "Nelly","Pitbull","Ludacris","Common","Ginuwine","Macklemore","Slipknot","Metallica","Nirvana","Radiohead",
+  "Coldplay","Maroon 5","Imagine Dragons","Linkin Park","Aerosmith","Queen","ABBA","Journey","Kiss","Genesis",
+  "Toto","Foreigner","Boston","Chicago","Heart","Bon Jovi","Poison","Scorpions","Anthrax",
+  "Megadeth","Pantera","Tool","Korn","Disturbed","Evanescence","Paramore","Fall Out Boy","Panic at the Disco","My Chemical Romance",
+  "Taylor Swift","Ed Sheeran","Bruno Mars","Billie Eilish","The Weeknd","Lady Gaga","Justin Bieber","Ariana Grande","Kanye West","Elton John",
+  "Stevie Wonder","Whitney Houston","Mariah Carey","Celine Dion","Freddie Mercury","John Lennon","Paul McCartney","Bob Dylan","Bob Marley","Jimi Hendrix",
+  "Stevie Nicks","Dolly Parton","Johnny Cash","Willie Nelson","Kacey Musgraves","Chris Stapleton","Miranda Lambert","Carrie Underwood","Shania Twain","Garth Brooks",
+  "Tim McGraw","Faith Hill","Luke Bryan","Blake Shelton","Keith Urban","Reba McEntire","George Strait","Alan Jackson","Brad Paisley","Jason Aldean",
+  "Olivia Rodrigo","Doja Cat","SZA","Megan Thee Stallion","Cardi B","Nicki Minaj","Travis Scott","Post Malone","J Cole","Kendrick Lamar",
+  "Childish Gambino","Frank Ocean","Tyler the Creator","A$AP Rocky","Lil Wayne","Snoop Dogg","Ice Cube","Dr Dre","Jay Z","Nas",
+  "Notorious BIG","Tupac","Outkast","Wu Tang Clan","Run DMC","Public Enemy","De La Soul","A Tribe Called Quest","Missy Elliott","Lauryn Hill",
+  "Erykah Badu","Alicia Keys","John Legend","Brandy","Chris Brown","Trey Songz","Miguel","The Internet","Daniel Caesar","Bryson Tiller",
+  "Sam Smith","James Blunt","James Arthur","Lewis Capaldi","George Ezra","Hozier","Glen Hansard","Damien Rice","Jeff Buckley","Nick Drake",
+  "Cat Stevens","Simon and Garfunkel","Crosby Stills Nash","Fleetwood Mac","The Doors","The Who","The Kinks","The Animals","Cream",
+  "Led Zeppelin","Pink Floyd","Black Sabbath","Deep Purple","Yes","Rush","Phil Collins","Talking Heads","The Cure","Joy Division",
+  "New Order","Depeche Mode","Duran Duran","Tears for Fears","The Smiths","Oasis","Blur","Pulp","Thom Yorke","Arctic Monkeys",
+  "The Strokes","Franz Ferdinand","Kings of Leon","The Killers","Vampire Weekend","MGMT","Tame Impala","Foster the People","Two Door Cinema Club","Bastille",
+  "Florence Welch","Mumford and Sons","The Lumineers","Of Monsters and Men","Glass Animals","Cage the Elephant","The Black Keys","Jack White","White Stripes","Gorillaz",
+  "Daft Punk","Justice","Disclosure","Calvin Harris","David Guetta","Avicii","Tiesto","Skrillex","Diplo","Marshmello",
+  "Zedd","Kygo","Martin Garrix","The Chainsmokers","Major Lazer","Flume","ODESZA","Porter Robinson","Deadmau5","Fatboy Slim",
+  "Moby","Massive Attack","Portishead","Bonobo","Aphex Twin","Boards of Canada","Burial","Four Tet","Caribou","Bicep",
+  "Beach House","Mac DeMarco","Kevin Parker","Khruangbin","Toro y Moi","Men I Trust","Clairo","Rex Orange County","Steve Lacy","Omar Apollo",
+  "Maggie Rogers","Phoebe Bridgers","Mitski","Japanese Breakfast","Snail Mail","Soccer Mommy","Boygenius","Big Thief","Adrianne Lenker","Sharon Van Etten",
+  "Angel Olsen","Cat Power","Fiona Apple","Tori Amos","PJ Harvey","St Vincent","Grimes","FKA Twigs","Banks",
+  "Lana Del Rey","Marina","Charli XCX","Carly Rae Jepsen","Robyn","Sigrid","Dua Lipa","Jorja Smith","Mahalia","Raye",
+  "Jessie Ware","Sault","Little Simz","Stormzy","Dave","Skepta","Wiley","AJ Tracey","Central Cee",
+  "Burna Boy","Wizkid","Davido","Tems","Rema","Asake","Fela Kuti","Angelique Kidjo","Youssou Ndour","Manu Chao"
+];
+
+// Normalize: keep only letters, uppercase. This is what the grid is built from.
+function normalize(name){
+  return name.toUpperCase().replace(/[^A-Z]/g, "");
+}
+
+/* ---------------------------------------------------------
+   DAILY PUZZLE SELECTION
+   Deterministic by date so everyone visiting on the same
+   day gets the same artist (classic Wordle behavior).
+--------------------------------------------------------- */
+function dayIndex(){
+  const epoch = new Date(2024, 0, 1);
+  const now = new Date();
+  const diffDays = Math.floor((now - epoch) / 86400000);
+  return diffDays % ARTISTS.length;
+}
+
+let PUZZLE_NUM = dayIndex();
+let ANSWER_DISPLAY = ARTISTS[PUZZLE_NUM];
+let ANSWER = normalize(ANSWER_DISPLAY);
+let isDailyPuzzle = true; // false once the player starts a "Play Again" bonus round
+const MAX_GUESSES = 6;
+
+/* ---------------------------------------------------------
+   STATE
+--------------------------------------------------------- */
+let board = Array.from({length: MAX_GUESSES}, () => Array(ANSWER.length).fill(""));
+let curRow = 0;
+let curCol = 0;
+let gameOver = false;
+const keyState = {}; // letter -> 'correct' | 'present' | 'absent'
+
+const STORAGE_KEY = "notedle_progress_v1";
+const STATS_KEY = "notedle_stats_v1";
+
+/* ---------------------------------------------------------
+   BUILD GRID
+--------------------------------------------------------- */
+const gridEl = document.getElementById("grid");
+gridEl.style.gridTemplateColumns = `repeat(1, 1fr)`;
+
+function buildGrid(){
+  gridEl.innerHTML = "";
+  gridEl.style.gridTemplateRows = `repeat(${MAX_GUESSES}, auto)`;
+  for(let r=0; r<MAX_GUESSES; r++){
+    const row = document.createElement("div");
+    row.className = "row";
+    row.style.gridTemplateColumns = `repeat(${ANSWER.length}, 52px)`;
+    row.id = `row-${r}`;
+    for(let c=0; c<ANSWER.length; c++){
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      tile.id = `tile-${r}-${c}`;
+      row.appendChild(tile);
+    }
+    gridEl.appendChild(row);
+  }
+  // Shrink tiles if the artist name is long, so it fits on screen.
+  // Longer names get progressively smaller tiles; the grid also
+  // scrolls horizontally as a fallback on narrow screens.
+  let tileSize = 52;
+  if(ANSWER.length > 7) tileSize = 42;
+  if(ANSWER.length > 12) tileSize = 34;
+  if(ANSWER.length > 17) tileSize = 28;
+  if(tileSize !== 52){
+    document.querySelectorAll(".tile").forEach(t => {
+      t.style.width = tileSize + "px";
+      t.style.height = tileSize + "px";
+      t.style.fontSize = (tileSize > 36 ? 1.1 : 0.85) + "rem";
+    });
+    document.querySelectorAll(".row").forEach(r => {
+      r.style.gridTemplateColumns = `repeat(${ANSWER.length}, ${tileSize}px)`;
+    });
+  }
+}
+buildGrid();
+
+/* ---------------------------------------------------------
+   BUILD KEYBOARD
+--------------------------------------------------------- */
+const KB_LAYOUT = [
+  ["Q","W","E","R","T","Y","U","I","O","P"],
+  ["A","S","D","F","G","H","J","K","L"],
+  ["ENTER","Z","X","C","V","B","N","M","BACK"]
+];
+const kbEl = document.getElementById("keyboard");
+function buildKeyboard(){
+  kbEl.innerHTML = "";
+  KB_LAYOUT.forEach(rowKeys => {
+    const row = document.createElement("div");
+    row.className = "kb-row";
+    rowKeys.forEach(k => {
+      const btn = document.createElement("button");
+      btn.className = "key";
+      btn.dataset.key = k;
+      if(k === "ENTER" || k === "BACK"){
+        btn.classList.add("wide");
+        btn.textContent = k === "BACK" ? "⌫" : "ENTER";
+      } else {
+        btn.textContent = k;
+      }
+      btn.addEventListener("click", () => handleKey(k));
+      row.appendChild(btn);
+    });
+    kbEl.appendChild(row);
+  });
+}
+buildKeyboard();
+
+/* ---------------------------------------------------------
+   PLAY AGAIN — start a fresh round with a new random artist
+   (used after the daily puzzle ends, for unlimited replay)
+--------------------------------------------------------- */
+function resetGameState(){
+  board = Array.from({length: MAX_GUESSES}, () => Array(ANSWER.length).fill(""));
+  curRow = 0;
+  curCol = 0;
+  gameOver = false;
+  Object.keys(keyState).forEach(k => delete keyState[k]);
+}
+
+function startNewGame(){
+  let newIndex = PUZZLE_NUM;
+  if(ARTISTS.length > 1){
+    while(newIndex === PUZZLE_NUM){
+      newIndex = Math.floor(Math.random() * ARTISTS.length);
+    }
+  }
+  PUZZLE_NUM = newIndex;
+  ANSWER_DISPLAY = ARTISTS[PUZZLE_NUM];
+  ANSWER = normalize(ANSWER_DISPLAY);
+  isDailyPuzzle = false; // bonus rounds don't affect daily stats/streak
+
+  resetGameState();
+  buildGrid();      // rebuilds tiles fresh (sized for the new answer's length)
+  buildKeyboard();  // fresh keys with no leftover correct/present/absent colors
+
+  document.getElementById("hintBox").textContent = "";
+  showMessage("New artist! Keep guessing.", 1800);
+  overlay.classList.remove("show");
+}
+
+/* ---------------------------------------------------------
+   INPUT HANDLING
+--------------------------------------------------------- */
+function handleKey(key){
+  if(gameOver) return;
+  if(key === "ENTER"){
+    submitGuess();
+  } else if(key === "BACK"){
+    if(curCol > 0){
+      curCol--;
+      board[curRow][curCol] = "";
+      renderRow(curRow);
+    }
+  } else if(/^[A-Z]$/.test(key)){
+    if(curCol < ANSWER.length){
+      board[curRow][curCol] = key;
+      const tile = document.getElementById(`tile-${curRow}-${curCol}`);
+      tile.textContent = key;
+      tile.classList.add("filled","pop");
+      curCol++;
+    }
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  const k = e.key.toUpperCase();
+  if(k === "ENTER") handleKey("ENTER");
+  else if(k === "BACKSPACE") handleKey("BACK");
+  else if(/^[A-Z]$/.test(k)) handleKey(k);
+});
+
+function renderRow(r){
+  for(let c=0; c<ANSWER.length; c++){
+    const tile = document.getElementById(`tile-${r}-${c}`);
+    tile.textContent = board[r][c];
+    tile.classList.toggle("filled", board[r][c] !== "");
+  }
+}
+
+/* ---------------------------------------------------------
+   GUESS SUBMISSION & SCORING (handles duplicate letters
+   the same way Wordle does — two-pass algorithm)
+--------------------------------------------------------- */
+function submitGuess(){
+  if(curCol < ANSWER.length){
+    shakeRow(curRow);
+    showMessage("Not enough letters — keep going!", 1400);
+    return;
+  }
+  const guess = board[curRow].join("");
+  const result = scoreGuess(guess, ANSWER);
+
+  // animate reveal
+  result.forEach((status, i) => {
+    setTimeout(() => {
+      const tile = document.getElementById(`tile-${curRow}-${i}`);
+      tile.classList.add(status);
+      updateKeyState(guess[i], status);
+    }, i * 180);
+  });
+
+  setTimeout(() => {
+    refreshKeyboardColors();
+    if(guess === ANSWER){
+      gameOver = true;
+      saveStats(true, curRow + 1);
+      setTimeout(() => showEndModal(true), 400);
+    } else if(curRow === MAX_GUESSES - 1){
+      gameOver = true;
+      saveStats(false, null);
+      setTimeout(() => showEndModal(false), 400);
+    } else {
+      curRow++;
+      curCol = 0;
+      showMessage("", 0);
+    }
+    saveProgress();
+  }, ANSWER.length * 180 + 200);
+}
+
+function scoreGuess(guess, answer){
+  const result = Array(answer.length).fill("absent");
+  const answerLetters = answer.split("");
+  const used = Array(answer.length).fill(false);
+
+  // pass 1: correct positions
+  for(let i=0; i<answer.length; i++){
+    if(guess[i] === answer[i]){
+      result[i] = "correct";
+      used[i] = true;
+      answerLetters[i] = null;
+    }
+  }
+  // pass 2: present-but-wrong-position
+  for(let i=0; i<answer.length; i++){
+    if(result[i] === "correct") continue;
+    const idx = answerLetters.indexOf(guess[i]);
+    if(idx !== -1){
+      result[i] = "present";
+      answerLetters[idx] = null;
+    }
+  }
+  return result;
+}
+
+function updateKeyState(letter, status){
+  const rank = {absent:0, present:1, correct:2};
+  if(!keyState[letter] || rank[status] > rank[keyState[letter]]){
+    keyState[letter] = status;
+  }
+}
+
+function refreshKeyboardColors(){
+  document.querySelectorAll(".key").forEach(btn => {
+    const k = btn.dataset.key;
+    if(keyState[k]){
+      btn.classList.remove("correct","present","absent");
+      btn.classList.add(keyState[k]);
+    }
+  });
+}
+
+function shakeRow(r){
+  const row = document.getElementById(`row-${r}`);
+  row.classList.add("shake");
+  setTimeout(() => row.classList.remove("shake"), 400);
+}
+
+/* ---------------------------------------------------------
+   MESSAGES / HINTS
+--------------------------------------------------------- */
+let msgTimer = null;
+function showMessage(text, duration){
+  const el = document.getElementById("message");
+  el.textContent = text;
+  if(msgTimer) clearTimeout(msgTimer);
+  if(duration > 0){
+    msgTimer = setTimeout(() => { el.textContent = ""; }, duration);
+  }
+}
+
+document.getElementById("hintBtn").addEventListener("click", () => {
+  const hintEl = document.getElementById("hintBox");
+  const wordCount = ANSWER_DISPLAY.split(" ").length;
+  const firstLetter = ANSWER_DISPLAY[0];
+  hintEl.textContent = `Hint: ${wordCount} word${wordCount > 1 ? "s" : ""}, ${ANSWER.length} letters total, starts with "${firstLetter}".`;
+});
+
+/* ---------------------------------------------------------
+   END-OF-GAME MODAL + SHARE
+--------------------------------------------------------- */
+const overlay = document.getElementById("overlay");
+const modalTitle = document.getElementById("modalTitle");
+const modalBody = document.getElementById("modalBody");
+const shareGridEl = document.getElementById("share-grid");
+
+function buildShareGrid(){
+  const emojiMap = {correct:"🟩", present:"🟨", absent:"⬛"};
+  let lines = [];
+  for(let r=0; r<=curRow && r<MAX_GUESSES; r++){
+    if(board[r].join("") === "") break;
+    const guess = board[r].join("");
+    const result = scoreGuess(guess, ANSWER);
+    lines.push(result.map(s => emojiMap[s]).join(""));
+  }
+  return lines.join("\n");
+}
+
+function showEndModal(won){
+  modalTitle.textContent = won ? "🎉 You got it!" : "So close!";
+  modalBody.textContent = `The artist was ${ANSWER_DISPLAY}. ${won ? `Solved in ${curRow+1}/${MAX_GUESSES}.` : (isDailyPuzzle ? `Better luck tomorrow!` : `Give the next one a shot!`)}`;
+  const label = isDailyPuzzle ? `Notedle #${PUZZLE_NUM}` : `Notedle (bonus round)`;
+  shareGridEl.textContent = `${label}\n${won ? (curRow+1) : "X"}/${MAX_GUESSES}\n\n${buildShareGrid()}`;
+  overlay.classList.add("show");
+}
+
+document.getElementById("playAgainBtn").addEventListener("click", () => startNewGame());
+document.getElementById("closeModal").addEventListener("click", () => overlay.classList.remove("show"));
+document.getElementById("shareBtn").addEventListener("click", () => {
+  const text = shareGridEl.textContent;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(() => showMessage("Copied to clipboard!", 1500));
+  } else {
+    showMessage("Copy not supported — screenshot instead!", 2000);
+  }
+});
+
+/* ---------------------------------------------------------
+   STATS (localStorage) — persists across visits on this device
+--------------------------------------------------------- */
+function loadStats(){
+  try{
+    return JSON.parse(localStorage.getItem(STATS_KEY)) || {played:0, wins:0, streak:0, maxStreak:0, lastWinPuzzle:null};
+  } catch(e){ return {played:0, wins:0, streak:0, maxStreak:0, lastWinPuzzle:null}; }
+}
+function saveStats(won, guessesUsed){
+  if(!isDailyPuzzle) return; // bonus replay rounds don't affect the daily streak/stats
+  const stats = loadStats();
+  // avoid double counting if user reloads after finishing
+  const progress = loadProgress();
+  if(progress && progress.recorded) return;
+
+  stats.played++;
+  if(won){
+    stats.wins++;
+    if(stats.lastWinPuzzle === PUZZLE_NUM - 1){
+      stats.streak++;
+    } else {
+      stats.streak = 1;
+    }
+    stats.lastWinPuzzle = PUZZLE_NUM;
+    stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
+  } else {
+    stats.streak = 0;
+  }
+  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+}
+
+document.getElementById("statsBtn").addEventListener("click", () => {
+  const s = loadStats();
+  modalTitle.textContent = "Your Stats";
+  modalBody.textContent = "";
+  shareGridEl.textContent =
+`Played: ${s.played}
+Win %: ${s.played ? Math.round((s.wins / s.played) * 100) : 0}
+Current streak: ${s.streak}
+Max streak: ${s.maxStreak}`;
+  overlay.classList.add("show");
+});
+
+/* ---------------------------------------------------------
+   PERSIST TODAY'S PROGRESS so a page reload doesn't reset it
+--------------------------------------------------------- */
+function saveProgress(){
+  if(!isDailyPuzzle) return; // don't overwrite the saved daily-puzzle progress with a bonus round
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    puzzle: PUZZLE_NUM,
+    board, curRow, curCol, gameOver, keyState,
+    recorded: gameOver
+  }));
+}
+function loadProgress(){
+  try{
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(data && data.puzzle === PUZZLE_NUM) return data;
+    return null;
+  } catch(e){ return null; }
+}
+(function restore(){
+  const data = loadProgress();
+  if(!data) return;
+  board = data.board;
+  curRow = data.curRow;
+  curCol = data.curCol;
+  gameOver = data.gameOver;
+  Object.assign(keyState, data.keyState || {});
+
+  for(let r=0; r<=curRow && r < MAX_GUESSES; r++){
+    if(board[r].join("") === "") continue;
+    const guess = board[r].join("");
+    if(guess.length === ANSWER.length){
+      const result = scoreGuess(guess, ANSWER);
+      result.forEach((status, i) => {
+        const tile = document.getElementById(`tile-${r}-${i}`);
+        tile.textContent = guess[i];
+        tile.classList.add("filled", status);
+      });
+    }
+  }
+  refreshKeyboardColors();
+  if(gameOver){
+    const won = board.some(row => row.join("") === ANSWER);
+    setTimeout(() => showEndModal(won), 300);
+  }
+})();
+</script>

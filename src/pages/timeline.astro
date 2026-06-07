@@ -8,10 +8,8 @@ import Layout from '../layouts/Layout.astro';
 
   <header class="tl-header">
     <h1>My Musical Timeline</h1>
-    <p>The biggest moments, eras, and evolutions — from the 1940s to today</p>
+    <p></p>
   </header>
-
-  
 
   <div class="timeline">
 
@@ -894,13 +892,15 @@ import Layout from '../layouts/Layout.astro';
 <style is:global>
   /* ── Outer wrapper — everything scoped inside .tl-wrap ── */
   .tl-wrap {
-    color: #f0f0f0;
+    color: 
+#f0f0f0;
     font-family: 'Segoe UI', system-ui, sans-serif;
     position: relative;
     background-image:
-      linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 100%),
-      url('/images/piano.jpg');
-    background-size: 100% auto;
+  
+      url('https://static.vecteezy.com/system/resources/previews/045/589/140/non_2x/navajo-tribal-seamless-pattern-native-american-ornament-ethnic-south-western-decor-style-boho-geometric-ornament-seamless-pattern-mexican-blanket-rug-woven-carpet-illustration-vector.jpg');
+    
+    background-size: 150% auto;
     background-repeat: repeat-y;
     background-position: top center;
   }
@@ -908,7 +908,7 @@ import Layout from '../layouts/Layout.astro';
   .tl-wrap .tl-header {
     text-align: center;
     padding: 60px 20px 40px;
-    background: linear-gradient(180deg, rgba(26,10,46,0.8) 0%, transparent 100%);
+    
   }
 
   .tl-wrap .tl-header h1 { 
@@ -916,7 +916,10 @@ import Layout from '../layouts/Layout.astro';
     font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(135deg, #0c3a1f, #84ba20, #dbde0c);
+    background: linear-gradient(135deg, 
+#000000, 
+#000000, 
+#000000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -925,8 +928,9 @@ import Layout from '../layouts/Layout.astro';
 
   .tl-wrap .tl-header p {
     margin-top: 12px;
-    color: #888;
-    font-size: 1.05rem;
+    font-family: 'Danfo', serif;
+    color: #000000;
+    font-size: 2.05rem;
     letter-spacing: 0.5px;
   }
 
@@ -954,7 +958,8 @@ import Layout from '../layouts/Layout.astro';
     display: inline-block !important;
     width: auto !important;
     flex: 0 0 auto !important;
-    background: #1a1a1a !important;
+    background: 
+#1a1a1a !important;
     color: #aaa !important;
     border: 1px solid #333 !important;
     border-radius: 20px !important;
@@ -971,15 +976,18 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .tl-wrap .filter-bar .filter-btn:hover {
-    background: #252525 !important;
+    background: 
+#252525 !important;
     color: #fff !important;
     border-color: #555 !important;
   }
 
   .tl-wrap .filter-bar .filter-btn.active {
-    background: #7c4dff !important;
+    background: 
+#7c4dff !important;
     color: #fff !important;
-    border-color: #7c4dff !important;
+    border-color: 
+#7c4dff !important;
   }
 
   /* ── Timeline spine ── */
@@ -997,7 +1005,11 @@ import Layout from '../layouts/Layout.astro';
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(180deg, #104112, #5de111, #d0e511, #eead16);
+    background: linear-gradient(180deg, 
+#104112, 
+#5de111, 
+#d0e511, 
+#eead16);
     transform: translateX(-50%);
     opacity: 0.3;
     pointer-events: none;
@@ -1075,7 +1087,8 @@ import Layout from '../layouts/Layout.astro';
 
   /* ── Card ── */
   .tl-wrap .event-card {
-    background: #141414;
+    background: 
+#141414;
     border: 1px solid #222;
     border-radius: 14px;
     padding: 18px 22px;
@@ -1087,7 +1100,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .tl-wrap .event:hover .event-card {
-    background: #1c1c1c;
+    background: 
+#1c1c1c;
     border-color: #333;
     transform: translateY(-2px);
   }
@@ -1108,7 +1122,8 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
     margin-bottom: 8px;
     line-height: 1.3;
-    color: #f0f0f0;
+    color: 
+#f0f0f0;
   }
 
   .tl-wrap .event-desc {
@@ -1140,7 +1155,8 @@ import Layout from '../layouts/Layout.astro';
     display: none;
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid #2a2a2a;
+    border-top: 1px solid 
+#2a2a2a;
   }
 
   .tl-wrap .event-detail.open { display: block; }
@@ -1161,7 +1177,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .tl-wrap .artist-chip {
-    background: #1f1f1f;
+    background: 
+#1f1f1f;
     border: 1px solid #333;
     border-radius: 20px;
     padding: 4px 12px;
@@ -1172,50 +1189,95 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ── Decade colour themes ── */
-  .tl-wrap .d1940 .decade-label span { border-color: #ff6b35; color: #ff6b35; }
-  .tl-wrap .d1940 .event-dot { border-color: #ff6b35; }
-  .tl-wrap .d1940 .event-year { color: #ff6b35; opacity: 1; }
-  .tl-wrap .d1940 .tag { background: rgba(255,107,53,0.15); color: #ff6b35; }
+  .tl-wrap .d1940 .decade-label span { border-color: 
+#ff6b35; color: 
+#ff6b35; }
+  .tl-wrap .d1940 .event-dot { border-color: 
+#ff6b35; }
+  .tl-wrap .d1940 .event-year { color: 
+#ff6b35; opacity: 1; }
+  .tl-wrap .d1940 .tag { background: rgba(255,107,53,0.15); color: 
+#ff6b35; }
 
-  .tl-wrap .d1950 .decade-label span { border-color: #ffd700; color: #ffd700; }
-  .tl-wrap .d1950 .event-dot { border-color: #ffd700; }
-  .tl-wrap .d1950 .event-year { color: #ffd700; opacity: 1; }
-  .tl-wrap .d1950 .tag { background: rgba(255,215,0,0.12); color: #ffd700; }
+  .tl-wrap .d1950 .decade-label span { border-color: 
+#ffd700; color: 
+#ffd700; }
+  .tl-wrap .d1950 .event-dot { border-color: 
+#ffd700; }
+  .tl-wrap .d1950 .event-year { color: 
+#ffd700; opacity: 1; }
+  .tl-wrap .d1950 .tag { background: rgba(255,215,0,0.12); color: 
+#ffd700; }
 
-  .tl-wrap .d1960 .decade-label span { border-color: #4caf50; color: #4caf50; }
-  .tl-wrap .d1960 .event-dot { border-color: #4caf50; }
-  .tl-wrap .d1960 .event-year { color: #4caf50; opacity: 1; }
-  .tl-wrap .d1960 .tag { background: rgba(76,175,80,0.12); color: #4caf50; }
+  .tl-wrap .d1960 .decade-label span { border-color: 
+#4caf50; color: 
+#4caf50; }
+  .tl-wrap .d1960 .event-dot { border-color: 
+#4caf50; }
+  .tl-wrap .d1960 .event-year { color: 
+#4caf50; opacity: 1; }
+  .tl-wrap .d1960 .tag { background: rgba(76,175,80,0.12); color: 
+#4caf50; }
 
-  .tl-wrap .d1970 .decade-label span { border-color: #ff4081; color: #ff4081; }
-  .tl-wrap .d1970 .event-dot { border-color: #ff4081; }
-  .tl-wrap .d1970 .event-year { color: #ff4081; opacity: 1; }
-  .tl-wrap .d1970 .tag { background: rgba(255,64,129,0.12); color: #ff4081; }
+  .tl-wrap .d1970 .decade-label span { border-color: 
+#ff4081; color: 
+#ff4081; }
+  .tl-wrap .d1970 .event-dot { border-color: 
+#ff4081; }
+  .tl-wrap .d1970 .event-year { color: 
+#ff4081; opacity: 1; }
+  .tl-wrap .d1970 .tag { background: rgba(255,64,129,0.12); color: 
+#ff4081; }
 
-  .tl-wrap .d1980 .decade-label span { border-color: #00e5ff; color: #00e5ff; }
-  .tl-wrap .d1980 .event-dot { border-color: #00e5ff; }
-  .tl-wrap .d1980 .event-year { color: #00e5ff; opacity: 1; }
-  .tl-wrap .d1980 .tag { background: rgba(0,229,255,0.12); color: #00e5ff; }
+  .tl-wrap .d1980 .decade-label span { border-color: 
+#00e5ff; color: 
+#00e5ff; }
+  .tl-wrap .d1980 .event-dot { border-color: 
+#00e5ff; }
+  .tl-wrap .d1980 .event-year { color: 
+#00e5ff; opacity: 1; }
+  .tl-wrap .d1980 .tag { background: rgba(0,229,255,0.12); color: 
+#00e5ff; }
 
-  .tl-wrap .d1990 .decade-label span { border-color: #7c4dff; color: #7c4dff; }
-  .tl-wrap .d1990 .event-dot { border-color: #7c4dff; }
-  .tl-wrap .d1990 .event-year { color: #7c4dff; opacity: 1; }
-  .tl-wrap .d1990 .tag { background: rgba(124,77,255,0.12); color: #7c4dff; }
+  .tl-wrap .d1990 .decade-label span { border-color: 
+#7c4dff; color: 
+#7c4dff; }
+  .tl-wrap .d1990 .event-dot { border-color: 
+#7c4dff; }
+  .tl-wrap .d1990 .event-year { color: 
+#7c4dff; opacity: 1; }
+  .tl-wrap .d1990 .tag { background: rgba(124,77,255,0.12); color: 
+#7c4dff; }
 
-  .tl-wrap .d2000 .decade-label span { border-color: #e040fb; color: #e040fb; }
-  .tl-wrap .d2000 .event-dot { border-color: #e040fb; }
-  .tl-wrap .d2000 .event-year { color: #e040fb; opacity: 1; }
-  .tl-wrap .d2000 .tag { background: rgba(224,64,251,0.12); color: #e040fb; }
+  .tl-wrap .d2000 .decade-label span { border-color: 
+#e040fb; color: 
+#e040fb; }
+  .tl-wrap .d2000 .event-dot { border-color: 
+#e040fb; }
+  .tl-wrap .d2000 .event-year { color: 
+#e040fb; opacity: 1; }
+  .tl-wrap .d2000 .tag { background: rgba(224,64,251,0.12); color: 
+#e040fb; }
 
-  .tl-wrap .d2010 .decade-label span { border-color: #ff9100; color: #ff9100; }
-  .tl-wrap .d2010 .event-dot { border-color: #ff9100; }
-  .tl-wrap .d2010 .event-year { color: #ff9100; opacity: 1; }
-  .tl-wrap .d2010 .tag { background: rgba(255,145,0,0.12); color: #ff9100; }
+  .tl-wrap .d2010 .decade-label span { border-color: 
+#ff9100; color: 
+#ff9100; }
+  .tl-wrap .d2010 .event-dot { border-color: 
+#ff9100; }
+  .tl-wrap .d2010 .event-year { color: 
+#ff9100; opacity: 1; }
+  .tl-wrap .d2010 .tag { background: rgba(255,145,0,0.12); color: 
+#ff9100; }
 
-  .tl-wrap .d2020 .decade-label span { border-color: #69f0ae; color: #69f0ae; }
-  .tl-wrap .d2020 .event-dot { border-color: #69f0ae; }
-  .tl-wrap .d2020 .event-year { color: #69f0ae; opacity: 1; }
-  .tl-wrap .d2020 .tag { background: rgba(105,240,174,0.12); color: #69f0ae; }
+  .tl-wrap .d2020 .decade-label span { border-color: 
+#69f0ae; color: 
+#69f0ae; }
+  .tl-wrap .d2020 .event-dot { border-color: 
+#69f0ae; }
+  .tl-wrap .d2020 .event-year { color: 
+#69f0ae; opacity: 1; }
+  .tl-wrap .d2020 .tag { background: rgba(105,240,174,0.12); color: 
+#69f0ae; }
 
   /* ── Mobile ── */
   @media (max-width: 700px) {

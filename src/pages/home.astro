@@ -1,39 +1,62 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
- 
-const posts = await getCollection('blog');
-const featured = posts.slice(0, 2);
-const latest = posts.slice(0, 8);
+
+const albums = [
+  {
+    date: "Week of June 2, 2026",
+    title: "Inferno",
+    artist: "Boards of Canada",
+    year: 2026,
+    cover: "https://f4.bcbits.com/img/a3190407865_10.jpg",
+    description: "Thirteen years later, an album thats tricky to pin down a",
+  },
+  {
+    date: "Week of May 26, 2026",
+    title: "Run, Run Pure Beauty",
+    artist: "Francis of Delirium",
+    year: 2026,
+    cover: "https://f4.bcbits.com/img/a2104415018_10.jpg",
+    description: "Dark and tender in equal measure, Jana Bahrich swings Run Run Pure Beauty from apocalyptic folk-rock to breezy indie pop without missing a beat. Francis of Delirium have made their best album yet.",
+  },
+  {
+    date: "Week of May 18, 2026",
+    title: "REDSTAR WU & THE WORLDWIDE SCOURGE",
+    artist: "Genesis Owusu",
+    year: 2026,
+    cover: "https://www1.wdr.de/radio/cosmo/musik/musikserien/reviews/genesis-owusu-100~_v-gseapremiumxl.jpg",
+    description: "A pleasant mix that slams punk, funk, hip hop, neo-soul, and disco against each other.",
+  },
+  {
+    date: "Week of May 11, 2026",
+    title: "sd-3",
+    artist: "Loukeman",
+    year: 2026,
+    cover: "https://media.pitchfork.com/photos/69eb98f1fc61c2e4cb5a113e/16:9/w_1280,c_limit/Loukeman%20-%20SD-3%20album%20art.jpg",
+    description: "An optimistic and rambunctious collection of short heavily manipulated and edited electronic dance tracks  ",
+  },
+];
 ---
- 
+
 <Layout title="That's a Bop!">
- 
+<link href="https://fonts.googleapis.com/css2?family=Danfo&family=Molle:ital@1&family=Chicle&display=swap" rel="stylesheet">
   <section>
-    <h2 class="section-heading">What's New</h2>
-    <div class="featured-grid">
-      {featured.map((post) => (
-        <a href={`/blog/${post.id}`} class="featured-card">
-          <div class="featured-card-image">
-            <span>{post.data.title}</span>
-          </div>
-          <h3>{post.data.title}</h3>
-        </a>
-      ))}
-    </div>
+    <h2 class="section-heading">Album of the Week</h2>
+
+    {albums.map((album) => (
+      <div class="album-of-the-week" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #ccc;">
+        <p style="font-size: 2.0rem; font-family: 'Chicle', serif; color: gray;">{album.date}</p>
+        <div class="album-cover">
+          <img src={album.cover} alt={`${album.title} by ${album.artist}`} style="width: 500px; height: 500px; object-fit: cover;" />
+        </div>
+        <div class="album-info">
+          <p class="album-artist" style="font-size: 2.5rem; font-family: 'Danfo', serif; color: black;">{album.artist}</p>
+          <h3 class="album-title" style="font-size: 2.5rem; font-family: 'Danfo', serif; color: black;">{album.title}</h3>
+          <p class="album-year" style="font-size: 2rem; font-family: 'Chicle', serif; color: black;">{album.year}</p>
+          <p class="album-description" style="font-size: 2rem; font-family: 'Chicle', serif; color: black;">{album.description}</p>
+        </div>
+      </div>
+    ))}
+
   </section>
- 
-  <section>
-    <h2 class="section-heading">The Latest</h2>
-    <div class="latest-grid">
-      {latest.map((post) => (
-        <a href={`/blog/${post.id}`} class="latest-card">
-          <h3>{post.data.title}</h3>
-          <p class="latest-meta">{post.data.description}</p>
-          <p class="latest-excerpt">{post.data.description}</p>
-        </a>
-      ))}
-    </div>
-  </section>
- 
+
 </Layout>
